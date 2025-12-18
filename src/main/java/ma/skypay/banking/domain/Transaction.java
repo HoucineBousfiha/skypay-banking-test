@@ -1,5 +1,43 @@
 package ma.skypay.banking.domain;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+/**
+ * Represents a banking transaction with date, amount, and running balance.
+ **/
+
 public class Transaction {
+    private final LocalDate date;
+    private final int amount;
+    private final int balance;
     
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
+    public Transaction(LocalDate date, int amount, int balance) {
+        this.date = date;
+        this.amount = amount;
+        this.balance = balance;
+    }
+    
+    public LocalDate getDate() {
+        return date;
+    }
+    
+    public int getAmount() {
+        return amount;
+    }
+    
+    public int getBalance() {
+        return balance;
+    }
+    
+    public String getFormattedDate() {
+        return date.format(DATE_FORMATTER);
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("%s || %d || %d", getFormattedDate(), amount, balance);
+    }
 }
